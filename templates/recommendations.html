@@ -7,13 +7,17 @@
 </head>
 <body>
     <h1>Recommended Destinations</h1>
-    <p>{{ recommendations }}</p>
     
-    <!-- Display Common Themes for Input Destinations -->
+    {% for destination in recommendations %}
+    <div>
+        <h2>{{ destination }}</h2>
+        <img src="{{ images[destination] }}" alt="Image of {{ destination }}" style="width:150px;height:auto;">
+    </div>
+    {% endfor %}
+    
     <h2>Common Themes for Your Destinations:</h2>
     <p>{{ input_themes }}</p>
     
-    <!-- Display Common Themes for Recommended Destinations -->
     <h2>Common Themes for Recommended Destinations:</h2>
     <p>{{ recommended_themes }}</p>
 </body>
