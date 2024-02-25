@@ -2,23 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recommendations</title>
+    <title>Destination Recommendations</title>
 </head>
 <body>
     <h1>Recommended Destinations</h1>
+    <ul>
+        {% for destination in recommendations %}
+            <li>
+                <h2>{{ destination }}</h2>
+                <img src="{{ images[destination] }}" alt="Image of {{ destination }}" style="width:150px;height:auto;">
+            </li>
+        {% endfor %}
+    </ul>
     
-    {% for destination in recommendations %}
-    <div>
-        <h2>{{ destination }}</h2>
-        <img src="{{ images[destination] }}" alt="Image of {{ destination }}" style="width:150px;height:auto;">
-    </div>
-    {% endfor %}
-    
-    <h2>Common Themes for Your Destinations:</h2>
+    <h2>Themes for Your Destinations</h2>
     <p>{{ input_themes }}</p>
     
-    <h2>Common Themes for Recommended Destinations:</h2>
+    <h2>Themes for Recommended Destinations</h2>
     <p>{{ recommended_themes }}</p>
+
+    <h2>Search for Flights</h2>
+    <form action="/search-flights" method="post">
+        <label for="fromId">From (Nearest Airport Code):</label>
+        <input type="text" id="fromId" name="fromId" value="{{ nearest_airport }}" required pattern="^[A-Z]{3}\.AIRPORT$" title="Airport code should be in the format ABC.AIRPORT">
+        
+        <label for="toId">To (Destination Airport Code):</label>
+        <input type="text" id="toId" name="toId" required pattern="^[A-Z]{3}\.AIRPORT$" title="Airport code should be in the format XYZ.AIRPORT">
+        
+        <label for="departDate">Departure Date:</label>
+        <input type="date" id="departDate" name="departDate" required pattern="\d{4}-\d{2}-\d{2}" title="Date must be in YYYY-MM-DD format">
+        
+        <button type="submit">Search Flights</button>
+    </form>
+    
 </body>
 </html>

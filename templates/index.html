@@ -8,7 +8,8 @@
 <body>
     <h1>Enter Destinations</h1>
     <form action="/recommend" method="post">
-        <input type="text" name="destinations" placeholder="Enter destinations separated by commas">
+        <input type="text" name="destinations" placeholder="Enter destinations separated by commas" required>
+        <input type="text" name="nearestAirport" placeholder="Enter your nearest airport code" required>
         <button type="submit">Get Recommendations</button>
     </form>
 </body>
